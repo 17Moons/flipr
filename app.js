@@ -36,6 +36,7 @@ const dealerSchema = new mongoose.Schema ({
   quantity: String,
   city: String,
   state: String,
+  email: String,
   password: String,
 });
 
@@ -113,7 +114,7 @@ app.get("/logout", function(req, res){
 
 
 app.post("/register", function(req, res){
-  Dealer.register({username: req.body.username, mobile: req.body.number, nature: req.body.nature, weight: req.body.weight, quantity: req.body.quantity, city: req.body.city, state: req.body.state}, req.body.password, function(err, user){
+  Dealer.register({username: req.body.username, mobile: req.body.number, nature: req.body.nature, weight: req.body.weight, quantity: req.body.quantity, city: req.body.city, state: req.body.state, email: req.body.email}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
       res.redirect("/register");
@@ -132,12 +133,12 @@ app.post("/login", function(req, res){
     password: req.body.password
   });
 
-  req.login(user, function(err){
+  req.login(dealer, function(err){
     if (err) {
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
+        res.redirect("/dashboard");
       });
     }
   });
