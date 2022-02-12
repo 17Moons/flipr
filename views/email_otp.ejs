@@ -1,27 +1,32 @@
 <%- include('partials/header') %>
 
 <div class="container mt-5">
-  <h1>Login</h1>
+  <h1>Login by OTP</h1>
 
   <div class="row">
     <div class="col-sm-8">
       <div class="card">
         <div class="card-body">
 
-          <form action="/dealer-login" method="POST">
+          <form action="/email-verf" method="POST">
             <div class="form-group">
               <label for="username">Username</label>
               <input type="text" id="username" class="form-control" name="username">
             </div>
             <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password">
+               <label for="email">Email</label>
+               <input type="email" class="form-control" name="email">
             </div>
-            <button type="submit" class="btn btn-dark">Login</button>
+
+            <button type="submit" class="btn btn-dark">Send OTP</button>
           </form>
           <br/>
 
-            <a href="/email-login"><button type="submit" class="btn btn-dark">Login by OTP</button></a>
+          <!-- <form action="/email-OTP">
+            <label for="otp">Enter the OPT</label>
+            <input type="number" id="otp"class="form-control" name="otp">
+            <button type="submit" class="btn btn-dark">Login by OTP</button>
+          </form> -->
 
         </div>
       </div>
