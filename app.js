@@ -41,12 +41,18 @@ const ddSchema = new mongoose.Schema ({
   truckCapacity: String,
   transporterName: String,
   drivingExp: String,
-  from1: String,
-  to1: String,
-  from2: String,
-  to2: String,
-  from3: String,
-  to3: String,
+  fromcity1: String,
+  tocity1: String,
+  fromstate1: String,
+  tostate1: String,
+  fromcity2: String,
+  tocity2: String,
+  fromstate2: String,
+  tostate2: String,
+  fromcity3: String,
+  tocity3: String,
+  fromstate3: String,
+  tostate3: String,
   email: String,
   password: String,
 });
@@ -180,7 +186,11 @@ app.post("/dealer-login", function(req, res){
 
 
 app.post("/driver-register", function(req, res){
-  DD.register({username: req.body.username, mobile: req.body.number, age: req.body.age, truckNumber: req.body.truckNumber, truckCapacity: req.body.truckCapacity, transporterName: req.body.transporterName, drivingExp: req.body.drivingExp, from1: req.body.from1, to1: req.body.to1, from2: req.body.from2, to2: req.body.to2, from3: req.body.from3, to3: req.body.to3, email: req.body.email}, req.body.password, function(err, user){
+  DD.register({username: req.body.username, mobile: req.body.number, age: req.body.age, truckNumber: req.body.truckNumber, truckCapacity: req.body.truckCapacity, transporterName: req.body.transporterName, drivingExp: req.body.drivingExp, 
+    fromcity1: req.body.fromcity1, tocity1: req.body.tocity1, fromstate1: req.body.fromstate1, tostate1: req.body.tostate1,
+    fromcity2: req.body.fromcity2, tocity2: req.body.tocity2, fromstate2: req.body.fromstate2, tostate2: req.body.tostate2,
+    fromcity3: req.body.fromcity3, tocity3: req.body.tocity3, fromstate3: req.body.fromstate3, tostate3: req.body.tostate3, 
+    email: req.body.email}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
       res.redirect("/driver-register");
