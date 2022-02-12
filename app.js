@@ -28,7 +28,7 @@ app.use(passport.session());
 
 mongoose.connect("mongodb://localhost:27017/ddDB", {useNewUrlParser: true});
 
-const dealerSchema = new mongoose.Schema ({
+const ddSchema = new mongoose.Schema ({
   username: String,
   mobile: String,
   nature: String,
@@ -51,14 +51,14 @@ const dealerSchema = new mongoose.Schema ({
   password: String,
 });
 
-dealerSchema.plugin(passportLocalMongoose);
+ddSchema.plugin(passportLocalMongoose);
 
-const Dealer = new mongoose.model("Dealer", dealerSchema);
+const DD = new mongoose.model("DD", ddSchema);
 
-passport.use(Dealer.createStrategy());
+passport.use(DD.createStrategy());
 
-passport.serializeUser(Dealer.serializeUser());
-passport.deserializeUser(Dealer.deserializeUser());
+passport.serializeUser(DD.serializeUser());
+passport.deserializeUser(DD.deserializeUser());
 
 app.get("/", function(req, res){
   res.render("home");
@@ -82,7 +82,7 @@ app.get("/register", function(req, res){
 });
 
 app.get("/dashboard", function(req, res){
-  Dealer.find({"name":{$ne: null}}, function(err, founduser){
+  DD.find({"name":{$ne: null}}, function(err, founduser){
   if(err){
     console.log(err);
   }else{
@@ -125,7 +125,7 @@ app.get("/logout", function(req, res){
 
 
 app.post("/register", function(req, res){
-  Dealer.register({username: req.body.username, mobile: req.body.number, nature: req.body.nature, weight: req.body.weight, quantity: req.body.quantity, city: req.body.city, state: req.body.state, email: req.body.email}, req.body.password, function(err, user){
+  DD.register({username: req.body.username, mobile: req.body.number, nature: req.body.nature, weight: req.body.weight, quantity: req.body.quantity, city: req.body.city, state: req.body.state, email: req.body.email}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
       res.redirect("/register");
@@ -139,12 +139,12 @@ app.post("/register", function(req, res){
 
 app.post("/login", function(req, res){
 
-  const dealer = new Dealer({
+  const dd = new DD({
     username: req.body.username,
     password: req.body.password
   });
 
-  req.login(dealer, function(err){
+  req.login(dd, function(err){
     if (err) {
       console.log(err);
     } else {
