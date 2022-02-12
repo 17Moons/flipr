@@ -1,0 +1,87 @@
+<%- include('partials/header') %>
+<div class="container mt-5">
+  <h1>Register</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <form action="/driver-register" method="POST">
+            <div class="form-group">
+              <label for="username">Name</label>
+              <input type="text" id="username" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+              <label for="number">Mobile Number</label>
+              <input type="number" id="number" class="form-control" name="number">
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" id="age" class="form-control" name="age">
+            </div>
+            <div class="form-group">
+              <label for="truckNumber">Truck Number</label>
+              <input type="text" id="truckNumber" class="form-control" name="truckNumber">
+            </div>
+            <div class="form-group">
+              <label for="truckCapacity">Truck Capacity</label>
+              <input type="text" id="truckCapacity" class="form-control" name="truckCapacity">
+            </div>
+            <div class="form-group">
+              <label for="transporterName">Transporter Name</label>
+              <input type="text" id="transporterName" class="form-control" name="transporterName" >
+            </div>
+            <div class="form-group">
+              <label for="drivingExp">Driving Experience</label>
+              <input type="text" id="drivingExp" class="form-control" name="drivingExp">
+            </div>
+            <h4>3 Interested routes</h4>
+            <h5>Route 1</h5>
+            <div class="form-group">
+              <label for="from1">From</label>
+              <input type="text" id="from1" class="form-control" name="from1">
+            </div>
+            <div class="form-group">
+              <label for="to1">To</label>
+              <input type="text" id="to1" class="form-control" name="to1">
+            </div>
+            <h5>Route 2</h5>
+            <div class="form-group">
+              <label for="from2">From</label>
+              <input type="text" id="from2" class="form-control" name="from2">
+            </div>
+            <div class="form-group">
+              <label for="to2">To</label>
+              <input type="text" id="to2" class="form-control" name="to2">
+            </div>
+            <h5>Route 3</h5>
+            <div class="form-group">
+              <label for="from3">From</label>
+              <input type="text" id="from3" class="form-control" name="from3">
+            </div>
+            <div class="form-group">
+              <label for="to3">To</label>
+              <input type="text" id="to3" class="form-control" name="to3">
+            </div>
+        
+            <div class="form-group">
+               <label for="email">Email</label>
+               <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-dark">Register</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<%- include('partials/header') %>

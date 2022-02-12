@@ -82,7 +82,7 @@ app.get("/dealer-register", function(req, res){
 });
 
 app.get("/dealer-dashboard", function(req, res){
-  DD.find({"name":{$ne: null}}, function(err, founduser){
+  DD.find({"username":{$ne: null}}, function(err, founduser){
   if(err){
     console.log(err);
   }else{
@@ -90,6 +90,27 @@ app.get("/dealer-dashboard", function(req, res){
   }
 });
 });
+
+
+
+app.get("/driver-login", function(req, res){
+  res.render("driver_login");
+});
+
+app.get("/driver-register", function(req, res){
+  res.render("driver_register");
+});
+
+app.get("/driver-dashboard", function(req, res){
+  DD.find({"username":{$ne: null}}, function(err, founduser){
+  if(err){
+    console.log(err);
+  }else{
+    res.render("driver_dashboard");
+  }
+});
+});
+
 
 
 // app.get("/submit", function(req, res){
@@ -150,6 +171,40 @@ app.post("/dealer-login", function(req, res){
     } else {
       passport.authenticate("local")(req, res, function(){
         res.redirect("/dealer-dashboard");
+      });
+    }
+  });
+
+});
+
+
+
+app.post("/driver-register", function(req, res){
+  DD.register({username: req.body.username, mobile: req.body.number, age: req.body.age, truckNumber: req.body.truckNumber, truckCapacity: req.body.truckCapacity, transporterName: req.body.transporterName, drivingExp: req.body.drivingExp, from1: req.body.from1, to1: req.body.to1, from2: req.body.from2, to2: req.body.to2, from3: req.body.from3, to3: req.body.to3, email: req.body.email}, req.body.password, function(err, user){
+    if (err) {
+      console.log(err);
+      res.redirect("/driver-register");
+    } else {
+      passport.authenticate("local")(req, res, function(){
+        res.redirect("/driver-dashboard");
+      });
+    }
+  });
+});
+
+app.post("/driver-login", function(req, res){
+
+  const dd = new DD({
+    username: req.body.username,
+    password: req.body.password
+  });
+
+  req.login(dd, function(err){
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate("local")(req, res, function(){
+        res.redirect("/driver-dashboard");
       });
     }
   });
