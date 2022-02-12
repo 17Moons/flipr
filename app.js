@@ -8,8 +8,10 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-
 const app = express();
+
+
+
 
 app.use(express.static("public"));
 app.set('view engine', 'ejs');
@@ -161,19 +163,26 @@ app.get("/logout", function(req, res){
 
 
 app.post("/email-verf", function(req, res){
- let email_verf= req.body.email;
- let username_verf = req.body.username;
- DD.exists({email: email_verf}, function (err, doc) {
-     if (err){
-         console.log(err);
-     }else{
-         console.log("Result");
-     }
- });
+ const email_verf= req.body.email;
+ const username_verf = req.body.username;
+DD.findOne({email: email_verf, username:username_verf }).exec((err,user)=> {
+  if(user){
+
+
+    var minm = 100000;
+    var maxm = 999999;
+    var otp =  Math.floor(Math.random() * (maxm - minm + 1)+ minm);
+    res.redirect("/enter-otp");
+  }else{
+    console.log("credentials entered were not found in database");
+    res.redirect("/");
+  }
+});
 });
 
 
 app.post("/email-otp-verify", function(req, res){
+
   res.redirect("/dealer-dashboard");
 });
 
