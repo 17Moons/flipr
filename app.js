@@ -73,20 +73,20 @@ app.get("/driver", function(req,res){
   res.render("driver");
 });
 
-app.get("/login", function(req, res){
-  res.render("login");
+app.get("/dealer-login", function(req, res){
+  res.render("dealer_login");
 });
 
-app.get("/register", function(req, res){
-  res.render("register");
+app.get("/dealer-register", function(req, res){
+  res.render("dealer_register");
 });
 
-app.get("/dashboard", function(req, res){
+app.get("/dealer-dashboard", function(req, res){
   DD.find({"name":{$ne: null}}, function(err, founduser){
   if(err){
     console.log(err);
   }else{
-    res.render("dashboard");
+    res.render("dealer_dashboard");
   }
 });
 });
@@ -124,20 +124,20 @@ app.get("/logout", function(req, res){
 });
 
 
-app.post("/register", function(req, res){
+app.post("/dealer-register", function(req, res){
   DD.register({username: req.body.username, mobile: req.body.number, nature: req.body.nature, weight: req.body.weight, quantity: req.body.quantity, city: req.body.city, state: req.body.state, email: req.body.email}, req.body.password, function(err, user){
     if (err) {
       console.log(err);
-      res.redirect("/register");
+      res.redirect("/dealer-register");
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/dashboard");
+        res.redirect("/dealer-dashboard");
       });
     }
   });
 });
 
-app.post("/login", function(req, res){
+app.post("/dealer-login", function(req, res){
 
   const dd = new DD({
     username: req.body.username,
@@ -149,7 +149,7 @@ app.post("/login", function(req, res){
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/dashboard");
+        res.redirect("/dealer-dashboard");
       });
     }
   });
