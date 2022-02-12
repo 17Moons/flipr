@@ -26,7 +26,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/fliprDB", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/ddDB", {useNewUrlParser: true});
 
 const dealerSchema = new mongoose.Schema ({
   username: String,
@@ -36,6 +36,17 @@ const dealerSchema = new mongoose.Schema ({
   quantity: String,
   city: String,
   state: String,
+  age: String,
+  truckNumber: String,
+  truckCapacity: String,
+  transporterName: String,
+  drivingExp: String,
+  from1: String,
+  to1: String,
+  from2: String,
+  to2: String,
+  from3: String,
+  to3: String,
   email: String,
   password: String,
 });
